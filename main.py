@@ -30,6 +30,9 @@ async def execute_script(event):
             e = str(''.join((random.choice(rr) for i in range(1))))
             user = e + u + 'bot'
             if i == 100:
+                s= open(f'check.txt', 'w')
+                s.write(x)
+                s.close()
                 sleep(1.4)
                 break
             sleep(1)
@@ -50,11 +53,14 @@ async def execute_script(event):
                     except Exception:
                         pass
             else:
-                await led.send_message('me',(f"NOOO : {user}" + ' ' + str(i) + " " + str(x)))
+                pass
+                #await led.send_message('me',(f"NOOO : {user}" + ' ' + str(i) + " " + str(x)))
 
 @led.on(events.NewMessage(outgoing=True, pattern="i"))
-async def _(event, x):
-    await led.send_message('me',x)
+async def _():
+    s = open(f'check.txt', 'r').read()
+    await led.send_message('me', s)
+    
 
 
 
